@@ -1,0 +1,56 @@
+<!-- Estrutura base do HTML da aplicação, usada como layout principal -->
+<html lang="en">
+  <head>
+    <!-- Define a codificação de caracteres e responsividade -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <title>Toughts</title>
+    
+    <!-- Ícone da aba do navegador -->
+    <link rel="shortcut icon" href="/img/favicon.ico" type="image/x-icon" />
+    
+    <!-- Estilos CSS da aplicação -->
+    <link rel="stylesheet" href="/css/styles.css" />
+    
+    <!-- Biblioteca de ícones FontAwesome -->
+    <script src="https://kit.fontawesome.com/01c8d52935.js" crossorigin="anonymous"></script>
+  </head>
+  <body>
+    <!-- Navbar de navegação -->
+    <nav id="navbar">
+      <a href="/" id="logo">
+        <img src="/img/toughts_logo.png" alt="Toughts" />
+      </a>
+
+      <ul>
+        <li><a href="/">Pensamentos</a></li>
+
+        <!-- Exibe links diferentes dependendo do login do usuário -->
+        {{#if session.userid}}
+          <li><a href="/toughts/dashboard">Dashboard</a></li>
+          <li><a href="/logout">Sair</a></li>
+        {{else}}
+          <li><a href="/login">Entrar</a></li>
+          <li><a href="/register">Registrar</a></li>
+        {{/if}}
+      </ul>
+    </nav>
+
+    <div class="container">
+      <!-- Exibe mensagens de feedback (como sucesso ou erro) -->
+      {{#if messages.message}}
+        <div class="message">
+          {{messages.message}}
+        </div>
+      {{/if}}
+
+      <!-- Conteúdo dinâmico de cada página será renderizado aqui -->
+      {{{body}}}
+    </div>
+
+    <footer>
+      <p><span>Toughts</span>&copy; 2025</p>
+    </footer>
+  </body>
+</html>
